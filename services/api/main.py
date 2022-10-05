@@ -11,9 +11,9 @@ app = FastAPI()
 # def home():
 #     return {"Hello": "GET"}
 
-# @app.post("/")
-# def home_post():
-#     return {"Hello": "POST"}
+@app.post("/")
+def home_post():
+    return {"Hello": "POST"}
 
 # @app.route("/employee/<int:id>/")
 # def home():
@@ -25,4 +25,3 @@ def home(department: str):
 
 if __name__ == "__main__":
     uvicorn.run("hello_world_fastapi:app")
-    
