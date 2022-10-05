@@ -28,7 +28,7 @@ jobs:
           USERNAME : ${{ secrets.USERNAME  }}
           
       run: |
-        ssh -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} ${USERNAME}@${HOSTNAME} '
+        ssh -o StrictHostKeyChecking=no -i ${PRIVATE_KEY} ${USERNAME}@${HOSTNAME}
         
           #Now we have got the access of EC2 and we will start the deploy .
           sudo su &&
