@@ -19,7 +19,7 @@ app = FastAPI()
 # def home():
 #     return {"id": id}
 
-@app.get("/employee")
+@app.post("/employee")
 def home(department: str):
     return {"department": department}
 
