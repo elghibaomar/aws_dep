@@ -12,8 +12,8 @@ app = FastAPI()
 #     return {"Hello": "GET"}
 
 @app.post("/")
-def home_post():
-    return {"Hello": "POST"}
+def home_post(text: str):
+    return {"Hello": text}
 
 # @app.route("/employee/<int:id>/")
 # def home():
