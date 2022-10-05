@@ -25,3 +25,4 @@ def home(department: str):
 
 if __name__ == "__main__":
     uvicorn.run("hello_world_fastapi:app")
+    
