@@ -19,37 +19,38 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    - uses: actions/checkout@v2 
-    - name: Deploy in EC2
-      env:
-          PRIVATE_KEY: ${{ secrets.KEY  }}
-          HOSTNAME : ${{ secrets.HOST  }}
-          USERNAME : ${{ secrets.USERNAME  }}
-          
-      run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOSTNAME}
-        
-          #Now we have got the access of EC2 and we will start the deploy .
-          sudo su &&
-          rm -rf aws_dep &&
-          git clone git@github.com:elghibaomar/aws_dep.git &&
-          cd aws_dep &&
-          sudo docker-compose down &&
-          docker-compose -f docker-compose.prod.yml up -d --build 
-
     # steps:
-    #   - name: executing ssh commands using ssh key
-    #     uses: appleboy/ssh-action@master
-    #     with:
-    #       host: ${{ secrets.HOST}}
-    #       username: ${{ secrets.USERNAME }}
-    #       key: ${{ secrets.KEY }}
-    #       script: |
-    #         sudo su
-    #         rm -rf anonymization-api
-    #         git clone git@github.com:elghibaomar/aws_dep.git
-    #         cd aws_dep
-    #         sudo docker-compose down
-    #         sudo docker-compose -f docker-compose.yaml up --build -d
+    # - uses: actions/checkout@v2 
+    # - name: Deploy in EC2
+    #   env:
+    #       PRIVATE_KEY: ${{ secrets.KEY  }}
+    #       HOSTNAME : ${{ secrets.HOST  }}
+    #       USERNAME : ${{ secrets.USERNAME  }}
+          
+    #   run: |
+    #     echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+    #     ssh -o StrictHostKeyChecking=no -i private_key ${USERNAME}@${HOSTNAME}
+        
+    #       #Now we have got the access of EC2 and we will start the deploy .
+    #       sudo su &&
+    #       rm -rf aws_dep &&
+    #       git clone git@github.com:elghibaomar/aws_dep.git &&
+    #       cd aws_dep &&
+    #       sudo docker-compose down &&
+    #       docker-compose -f docker-compose.prod.yml up -d --build 
+
+    steps:
+      - name: executing ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST}}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            sudo su
+            rm -rf ws_dep
+            git clone git@github.com:elghibaomar/aws_dep.git
+            cd aws_dep
+            sudo docker-compose down
+            sudo docker-compose -f docker-compose.yaml up --build -d
+            
