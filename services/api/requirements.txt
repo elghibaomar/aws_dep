@@ -14,4 +14,3 @@ passlib==1.7.4
 pycparser==2.20
 PyJWT==2.0.0
 six==1.15.0
-starlette==0.13.6
