@@ -1,6 +1,6 @@
 FROM python:3.9
 
-RUN pip install fastapi uvicorn spacy
+RUN pip install fastapi uvicorn
 
 COPY . /api/api
 
