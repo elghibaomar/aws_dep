@@ -1,12 +1,14 @@
 FROM python:3.9
 
 # RUN pip install fastapi uvicorn spacy
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
 COPY . /api/api
 
 ENV PYTHONPATH=/api
 WORKDIR /api
+
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
